@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500&family=Space+Grotesk:wght@500&display=swap');
+
+:root {
+  --navy: #0F172A;
+  --accent: #FF4D2E;
+  --accent-light: #FF7A5C;
+  --bone: #F4F4F2;
+  --slate: #64748B;
+  --success: #10B981;
+  --warning: #EF9F27;
+  --danger: #E24B4A;
+}
+
+html {
+  background: var(--bone);
+}
+
+body {
+  background: var(--bone);
+  color: var(--navy);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--navy);
+  font-family: 'Archivo Black', sans-serif;
+  font-weight: 400;
+}
+
+h4,
+h5,
+h6,
+button,
+label,
+th,
+.estado {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1180px;
+  width: min(92%, 1180px);
+}
+
+.card,
+.tarjeta {
+  background: #fff;
+  border: 1px solid #E2E4E0;
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+.btn {
+  background: var(--accent);
+  border: 0;
+  border-radius: 12px;
+  box-shadow: none;
+  color: #fff;
+  font-size: .86rem;
+  height: auto;
+  line-height: 1.2;
+  padding: 13px 19px;
+  text-transform: none;
+  transition: background-color .18s ease, transform .18s ease;
+}
+
+.btn:hover,
+.btn:focus {
+  background: var(--accent-light);
+  box-shadow: none;
+  color: #fff;
+}
+
+.btn:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  background: #cbd5e1;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+input:not([type]),
+input[type=text]:not(.browser-default),
+input[type=email]:not(.browser-default),
+input[type=tel]:not(.browser-default),
+input[type=date]:not(.browser-default),
+select.browser-default {
+  border-color: #cbd5e1;
+}
+
+input:focus-visible,
+select:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
