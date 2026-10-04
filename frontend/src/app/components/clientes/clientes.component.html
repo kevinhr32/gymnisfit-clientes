@@ -1,0 +1,154 @@
+<header class="barra-superior">
+  <div class="container barra-contenido">
+    <a class="marca" href="/" aria-label="Gymnisfit clientes">
+      <img src="favicon.svg" alt="" width="36" height="36" />
+      <span>GYMNIS <strong>FIT</strong></span>
+    </a>
+    <span class="marca-contexto">Gestión de clientes</span>
+  </div>
+</header>
+
+<main class="container contenido-principal">
+  <section class="encabezado-pagina">
+    <div>
+      <p class="eyebrow">Panel de administración</p>
+      <h1>Clientes del gimnasio</h1>
+      <p class="subtitulo">Registra y consulta el estado de los miembros de Gymnisfit.</p>
+    </div>
+    <div class="resumen-miembros" aria-label="Cantidad de clientes">
+      <span class="resumen-numero">{{ clientes.length }}</span>
+      <span class="resumen-etiqueta">miembros</span>
+    </div>
+  </section>
+
+  @if (mensajeExito) {
+    <div class="mensaje mensaje-exito" role="status">{{ mensajeExito }}</div>
+  }
+
+  @if (mensajeError) {
+    <div class="mensaje mensaje-error" role="alert">{{ mensajeError }}</div>
+  }
+
+  <section class="card tarjeta formulario-tarjeta">
+    <div class="tarjeta-cabecera">
+      <div>
+        <p class="eyebrow">{{ modoEdicion ? 'Actualizar información' : 'Nuevo registro' }}</p>
+        <h2>{{ modoEdicion ? 'Editar cliente' : 'Agregar cliente' }}</h2>
+      </div>
+      @if (modoEdicion) {
+        <button class="btn btn-texto" type="button" (click)="cancelarEdicion(formularioCliente)">
+          Cancelar edición
+        </button>
+      }
+    </div>
+
+    <form #formularioCliente="ngForm" (ngSubmit)="guardarCliente(formularioCliente)" novalidate>
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <label for="nombre">Nombre completo</label>
+          <input id="nombre" name="nombre" type="text" required [(ngModel)]="formulario.nombre" #nombre="ngModel" />
+          @if (nombre.invalid && (nombre.touched || formularioCliente.submitted)) {
+            <span class="campo-error">El nombre es obligatorio.</span>
+          }
+        </div>
+
+        <div class="input-field col s12 m6">
+          <label for="documento">Documento</label>
+          <input id="documento" name="documento" type="text" required [(ngModel)]="formulario.documento" #documento="ngModel" />
+          @if (documento.invalid && (documento.touched || formularioCliente.submitted)) {
+            <span class="campo-error">El documento es obligatorio.</span>
+          }
+        </div>
+
+        <div class="input-field col s12 m6">
+          <label for="correo">Correo electrónico</label>
+          <input id="correo" name="correo" type="email" required email [(ngModel)]="formulario.correo" #correo="ngModel" />
+          @if (correo.invalid && (correo.touched || formularioCliente.submitted)) {
+            <span class="campo-error">Escribe un correo válido.</span>
+          }
+        </div>
+
+        <div class="input-field col s12 m6">
+          <label for="telefono">Teléfono</label>
+          <input id="telefono" name="telefono" type="tel" [(ngModel)]="formulario.telefono" />
+        </div>
+
+        <div class="input-field col s12 m6">
+          <label for="plan">Plan</label>
+          <select id="plan" name="plan" class="browser-default" required [(ngModel)]="formulario.plan">
+            @for (plan of planes; track plan) {
+              <option [value]="plan">{{ plan }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="input-field col s12 m6">
+          <label for="fechaVencimiento">Fecha de vencimiento</label>
+          <input id="fechaVencimiento" name="fechaVencimiento" type="date" required [(ngModel)]="formulario.fechaVencimiento" #fechaVencimiento="ngModel" />
+          @if (fechaVencimiento.invalid && (fechaVencimiento.touched || formularioCliente.submitted)) {
+            <span class="campo-error">La fecha de vencimiento es obligatoria.</span>
+          }
+        </div>
+      </div>
+
+      <div class="acciones-formulario">
+        <button class="btn" type="submit" [disabled]="guardando">
+          {{ guardando ? 'Guardando…' : (modoEdicion ? 'Guardar cambios' : 'Agregar cliente') }}
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <section class="card tarjeta tabla-tarjeta">
+    <div class="tarjeta-cabecera">
+      <div>
+        <p class="eyebrow">Directorio</p>
+        <h2>Clientes registrados</h2>
+      </div>
+      <button class="btn btn-outline" type="button" (click)="cargarClientes()" [disabled]="cargando">
+        Actualizar lista
+      </button>
+    </div>
+
+    @if (cargando) {
+      <div class="estado-carga" role="status">Cargando clientes…</div>
+    } @else if (clientes.length === 0) {
+      <div class="tabla-vacia">
+        <span class="tabla-vacia-icono">✦</span>
+        <p>Aún no hay clientes. Agrega el primero arriba.</p>
+      </div>
+    } @else {
+      <div class="tabla-contenedor">
+        <table class="highlight responsive-table">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Documento</th>
+              <th scope="col">Plan</th>
+              <th scope="col">Vence</th>
+              <th scope="col">Estado</th>
+              <th scope="col" class="columna-acciones">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (cliente of clientes; track cliente._id) {
+              <tr>
+                <td data-label="Nombre" class="nombre-cliente">{{ cliente.nombre }}</td>
+                <td data-label="Documento">{{ cliente.documento }}</td>
+                <td data-label="Plan">{{ cliente.plan }}</td>
+                <td data-label="Vence">{{ formatearFecha(cliente.fechaVencimiento) }}</td>
+                <td data-label="Estado"><span class="estado" [class]="'estado ' + cliente.estado">{{ cliente.estado.replace('_', ' ') }}</span></td>
+                <td data-label="Acciones" class="acciones-tabla">
+                  <button class="boton-accion editar" type="button" (click)="editarCliente(cliente, formularioCliente)">Editar</button>
+                  <button class="boton-accion eliminar" type="button" (click)="eliminarCliente(cliente)">Eliminar</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </section>
+</main>
+
+<footer class="pie-pagina container">Gymnisfit · Administración de clientes</footer>

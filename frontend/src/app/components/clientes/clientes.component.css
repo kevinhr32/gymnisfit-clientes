@@ -1,0 +1,332 @@
+:host {
+  display: block;
+}
+
+.barra-superior {
+  background: var(--navy);
+  color: var(--bone);
+}
+
+.barra-contenido {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.marca {
+  color: var(--bone);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: .02em;
+}
+
+.marca img {
+  display: block;
+}
+
+.marca strong {
+  color: var(--accent);
+}
+
+.marca-contexto {
+  color: #cbd5e1;
+  font-size: .85rem;
+}
+
+.contenido-principal {
+  padding-top: 48px;
+  padding-bottom: 28px;
+}
+
+.encabezado-pagina {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+}
+
+h2 {
+  color: var(--navy);
+  font-size: 1.55rem;
+}
+
+.subtitulo {
+  color: var(--slate);
+  margin: 10px 0 0;
+}
+
+.resumen-miembros {
+  align-items: baseline;
+  display: flex;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.resumen-numero {
+  color: var(--accent);
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 2rem;
+}
+
+.resumen-etiqueta {
+  color: var(--slate);
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.tarjeta {
+  margin-bottom: 24px;
+  padding: 28px;
+}
+
+.tarjeta-cabecera {
+  align-items: start;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.formulario-tarjeta .row {
+  margin-bottom: 0;
+}
+
+.input-field {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.input-field > label {
+  color: var(--slate);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .8rem;
+  left: 0;
+  position: static;
+  transform: none;
+}
+
+.input-field input:not([type='submit']),
+.input-field select {
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: var(--navy);
+  font-family: 'Inter', sans-serif;
+  height: 46px;
+  margin: 6px 0 0;
+  padding: 0 13px;
+  width: 100%;
+}
+
+.input-field input:focus {
+  border-bottom: 2px solid var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(255, 77, 46, .15) !important;
+}
+
+.input-field select:focus {
+  border-color: var(--accent);
+  outline: 2px solid rgba(255, 77, 46, .15);
+}
+
+.campo-error {
+  color: var(--danger);
+  display: block;
+  font-size: .75rem;
+  margin-top: 5px;
+}
+
+.acciones-formulario {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.btn-texto {
+  background: transparent;
+  color: var(--slate);
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.btn-texto:hover {
+  background: transparent;
+  color: var(--accent);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.btn-outline:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.mensaje {
+  border-radius: 10px;
+  font-size: .9rem;
+  margin-bottom: 18px;
+  padding: 13px 16px;
+}
+
+.mensaje-exito {
+  background: #d1fae5;
+  color: #047857;
+}
+
+.mensaje-error {
+  background: #fee2e2;
+  color: var(--danger);
+}
+
+.tabla-contenedor {
+  overflow-x: auto;
+}
+
+table {
+  min-width: 720px;
+}
+
+thead {
+  border-bottom: 1px solid #e2e4e0;
+}
+
+th {
+  color: var(--slate);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+td {
+  color: var(--navy);
+  font-size: .9rem;
+}
+
+.nombre-cliente {
+  font-weight: 500;
+}
+
+.estado {
+  border-radius: 999px;
+  display: inline-flex;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .73rem;
+  font-weight: 500;
+  letter-spacing: .03em;
+  padding: 6px 10px;
+}
+
+.estado.ACTIVO {
+  background: #d1fae5;
+  color: #047857;
+}
+
+.estado.POR_VENCER {
+  background: #fef3c7;
+  color: #a16207;
+}
+
+.estado.VENCIDO {
+  background: #fee2e2;
+  color: var(--danger);
+}
+
+.columna-acciones,
+.acciones-tabla {
+  text-align: right;
+}
+
+.boton-accion {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .8rem;
+  font-weight: 500;
+  margin-left: 12px;
+  padding: 5px 0;
+}
+
+.boton-accion.editar {
+  color: var(--navy);
+}
+
+.boton-accion.eliminar {
+  color: var(--danger);
+}
+
+.boton-accion:hover {
+  text-decoration: underline;
+}
+
+.tabla-vacia,
+.estado-carga {
+  color: var(--slate);
+  padding: 48px 20px;
+  text-align: center;
+}
+
+.tabla-vacia p {
+  margin: 0;
+}
+
+.pie-pagina {
+  color: var(--slate);
+  font-size: .8rem;
+  padding-bottom: 32px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .barra-contenido,
+  .encabezado-pagina {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .barra-contenido {
+    justify-content: center;
+    min-height: 88px;
+  }
+
+  .contenido-principal {
+    padding-top: 32px;
+  }
+
+  .tarjeta {
+    padding: 20px 16px;
+  }
+
+  .tarjeta-cabecera {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
